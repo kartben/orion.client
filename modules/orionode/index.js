@@ -15,6 +15,7 @@ var connect = require('connect'),
     orionFile = require('./lib/file'),
     orionNode = require('./lib/node'),
     orionWorkspace = require('./lib/workspace'),
+    orionArduino = require('./lib/arduino'),
     orionNodeStatic = require('./lib/orionode_static'),
     orionStatic = require('./lib/orion_static');
 
@@ -50,6 +51,10 @@ function startServer(options) {
 			.use(orionWorkspace({
 				root: '/workspace',
 				fileRoot: '/file',
+				workspaceDir: workspaceDir
+			}))
+			.use(orionArduino({
+				root: '/arduino',
 				workspaceDir: workspaceDir
 			}))
 			.use(orionNode({
